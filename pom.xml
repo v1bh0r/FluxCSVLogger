@@ -4,6 +4,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <name>Flux CSV Logger Plugin</name> <!-- Project name -->
+  <description>A plugin for logging Flux data as CSV</description> <!-- Project description -->
+  <url>https://github.com/v1bh0r/FluxCSVLogger</url> <!-- Project URL -->
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/license/mit</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>v1bh0r</id>
+      <name>Vibhor Mahajan</name>
+      <email>vibhor.mahajan@gmail.com</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@github.com:v1bh0r/FluxCSVLogger.git</connection>
+    <developerConnection>scm:git:git@github.com:v1bh0r/FluxCSVLogger.git</developerConnection>
+    <url>https://github.com/v1bh0r/FluxCSVLogger</url>
+  </scm>
+
   <groupId>io.github.v1bh0r</groupId>
   <artifactId>flux-csv-logger-plugin</artifactId>
   <version>1.0.0</version>
@@ -100,6 +125,36 @@
             --illegal-access=permit
           </argLine>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.3.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>central</publishingServerId>
+          <tokenAuth>true</tokenAuth>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+            <configuration>
+                <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                </gpgArguments>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
